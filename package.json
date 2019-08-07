@@ -71,6 +71,9 @@
     "branch": "saga",
     "remoteTags": true
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "package-lock.json",
     "dist",
