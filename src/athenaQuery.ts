@@ -119,5 +119,9 @@ export const athenaQuery = ({
 			})
 			throw new Error(`No resultset returned.`)
 		}
+		d({
+			QueryExecutionId,
+			ResultSet,
+		})
 		return ResultSet
 	}
