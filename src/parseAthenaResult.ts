@@ -23,6 +23,10 @@ export const parseAthenaResult = ({
 		return []
 	}
 	const { ColumnInfo } = ResultSetMetadata
+	const f = {
+		...defaultFormatters,
+		...formatters,
+	} as Formatters
 	return Rows.slice(skip).map(({ Data }) => {
 		if (!Data) {
 			return {}
@@ -36,8 +40,7 @@ export const parseAthenaResult = ({
 				v = Data[key].VarCharValue
 			}
 			if (v !== undefined) {
-				const formatter =
-					(formatters || defaultFormatters)[Type] || defaultFormatters.default
+				const formatter = f[Type] || f.default
 				v = formatter(v)
 			}
 			return {
