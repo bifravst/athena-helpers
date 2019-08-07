@@ -65,12 +65,7 @@
   },
   "release": {
     "branch": "saga",
-    "remoteTags": true,
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/github"
-    ]
+    "remoteTags": true
   },
   "files": [
     "package-lock.json",
