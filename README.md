@@ -1,4 +1,4 @@
-# Athena Helpers [![npm](https://img.shields.io/badge/npm-%40bifravst%2Fathena--helpers-blue.svg)](https://www.npmjs.com/package/@bifravst/athena-helpers)
+# Athena Helpers [![npm version](https://img.shields.io/npm/v/@bifravst/athena-helpers.svg)](https://www.npmjs.com/package/@bifravst/athena-helpers)
 
 [![CircleCI](https://circleci.com/gh/bifravst/athena-helpers/tree/saga.svg?style=svg)](https://circleci.com/gh/bifravst/athena-helpers/tree/saga)
 [![Greenkeeper badge](https://badges.greenkeeper.io/bifravst/athena-helpers.svg)](https://greenkeeper.io/)
