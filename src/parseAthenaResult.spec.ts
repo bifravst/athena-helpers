@@ -183,4 +183,136 @@ describe('parseAthenaResult', () => {
 			},
 		])
 	})
+
+	it('can parse a result with array values', () => {
+		expect(
+			parseAthenaResult({
+				skip: 1,
+				ResultSet: {
+					ResultSetMetadata: {
+						ColumnInfo: [
+							{
+								CaseSensitive: true,
+								CatalogName: 'hive',
+								Label: 'date',
+								Name: 'date',
+								Nullable: 'UNKNOWN',
+								Precision: 2147483647,
+								Scale: 0,
+								SchemaName: '',
+								TableName: '',
+								Type: 'varchar',
+							},
+							{
+								CaseSensitive: false,
+								CatalogName: 'hive',
+								Label: 'value',
+								Name: 'value',
+								Nullable: 'UNKNOWN',
+								Precision: 0,
+								Scale: 0,
+								SchemaName: '',
+								TableName: '',
+								Type: 'array',
+							},
+						],
+					},
+					Rows: [
+						{ Data: [{ VarCharValue: 'date' }, { VarCharValue: 'value' }] },
+						{
+							Data: [
+								{ VarCharValue: '2019-08-05T20:06:23.714Z' },
+								{ VarCharValue: '[3.4, 4.2, 4.7]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-08-05T20:06:23.322Z' },
+								{ VarCharValue: '[3.4, 4.2, 0.0]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-08-05T20:06:22.949Z' },
+								{ VarCharValue: '[3.4, 0.0, 0.0]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-08-01T10:30:20.854Z' },
+								{ VarCharValue: '[2.1, 0.6, 2.6]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-08-01T10:30:20.374Z' },
+								{ VarCharValue: '[2.1, 0.6, 0.0]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-08-01T10:30:19.623Z' },
+								{ VarCharValue: '[2.1, 0.0, 0.0]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-07-31T08:34:19.805Z' },
+								{ VarCharValue: '[3.6, 4.5, 6.7]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-07-31T08:34:19.157Z' },
+								{ VarCharValue: '[3.6, 4.5, 0.0]' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '2019-07-31T08:34:18.597Z' },
+								{ VarCharValue: '[3.6, 0.0, 0.0]' },
+							],
+						},
+					],
+				},
+			}),
+		).toEqual([
+			{
+				date: '2019-08-05T20:06:23.714Z',
+				value: [3.4, 4.2, 4.7],
+			},
+			{
+				date: '2019-08-05T20:06:23.322Z',
+				value: [3.4, 4.2, 0.0],
+			},
+			{
+				date: '2019-08-05T20:06:22.949Z',
+				value: [3.4, 0.0, 0.0],
+			},
+			{
+				date: '2019-08-01T10:30:20.854Z',
+				value: [2.1, 0.6, 2.6],
+			},
+			{
+				date: '2019-08-01T10:30:20.374Z',
+				value: [2.1, 0.6, 0.0],
+			},
+			{
+				date: '2019-08-01T10:30:19.623Z',
+				value: [2.1, 0.0, 0.0],
+			},
+			{
+				date: '2019-07-31T08:34:19.805Z',
+				value: [3.6, 4.5, 6.7],
+			},
+			{
+				date: '2019-07-31T08:34:19.157Z',
+				value: [3.6, 4.5, 0.0],
+			},
+			{
+				date: '2019-07-31T08:34:18.597Z',
+				value: [3.6, 0.0, 0.0],
+			},
+		])
+	})
 })

@@ -2,10 +2,13 @@ import { Athena } from 'aws-sdk'
 
 export type ParsedResult = { [key: string]: string | number }[]
 
+export type Formatters = { [key: string]: (v: string) => any }
+
 const defaultFormatters = {
 	integer: (v: string) => parseInt(v, 10),
 	default: (v: string) => v,
-} as { [key: string]: (v: string) => any }
+	array: (v: string) => JSON.parse(v) as any[],
+}
 
 export const parseAthenaResult = ({
 	ResultSet: { Rows, ResultSetMetadata },
@@ -13,9 +16,7 @@ export const parseAthenaResult = ({
 	skip,
 }: {
 	ResultSet: Athena.ResultSet
-	formatters?: {
-		integer: (v: string) => number
-	}
+	formatters?: Formatters
 	skip?: number
 }): ParsedResult => {
 	if (!Rows || !ResultSetMetadata || !ResultSetMetadata.ColumnInfo) {
