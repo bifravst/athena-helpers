@@ -1,0 +1,93 @@
+{
+  "name": "@bifravst/athena-helpers",
+  "version": "0.0.0-development",
+  "description": "Helper functions which simplify working with AWS Athena",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "test": "test -n \"$SKIP_TESTS\" && true || jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bifravst/athena-helpers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bifravst/athena-helpers/issues"
+  },
+  "homepage": "https://github.com/bifravst/athena-helpers",
+  "keywords": [
+    "Cloud",
+    "IoT",
+    "bifravst",
+    "AssetTracker",
+    "NordicSemiconductor"
+  ],
+  "author": "Nordic Semiconductor ASA | nordicsemi.no",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.504.0",
+    "backoff": "^2.5.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-angular": "^8.1.0",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/backoff": "^2.5.1",
+    "@types/jest": "^24.0.16",
+    "@types/node": "^12.6.9",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "husky": "^3.0.2",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e",
+      "pre-commit": "lint-staged && npm test"
+    }
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write",
+      "eslint --ext .js,.ts",
+      "git add"
+    ]
+  },
+  "engines": {
+    "node": ">=10.0.0",
+    "npm": ">=6.0.0"
+  },
+  "release": {
+    "branch": "saga",
+    "remoteTags": true,
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github"
+    ]
+  },
+  "jest": {
+    "testURL": "http://localhost",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": ".+\\.spec\\.ts$",
+    "globals": {
+      "ts-jest": {
+        "diagnostics": true
+      }
+    }
+  }
+}
