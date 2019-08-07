@@ -72,6 +72,12 @@
       "@semantic-release/github"
     ]
   },
+  "files": [
+    "package-lock.json",
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "jest": {
     "testURL": "http://localhost",
     "moduleFileExtensions": [
