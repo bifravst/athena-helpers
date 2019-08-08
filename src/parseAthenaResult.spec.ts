@@ -69,8 +69,8 @@ describe('parseAthenaResult', () => {
 		expect(
 			parseAthenaResult({
 				ResultSet,
-				formatters: {
-					integer: v => parseInt(v, 10) / 1000,
+				formatFields: {
+					value: v => parseInt(v, 10) / 1000,
 				},
 				skip: 1,
 			}),
