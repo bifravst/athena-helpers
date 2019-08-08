@@ -2,31 +2,27 @@ import { Athena } from 'aws-sdk'
 
 export type ParsedResult = { [key: string]: string | number }[]
 
-export type Formatters = { [key: string]: (v: string) => any }
+export type FieldFormatters = { [key: string]: (v: any) => any }
 
-const defaultFormatters = {
+const valueParsers = {
 	integer: (v: string) => parseInt(v, 10),
 	default: (v: string) => v,
 	array: (v: string) => JSON.parse(v) as any[],
-}
+} as { [key: string]: (v: string) => any }
 
 export const parseAthenaResult = ({
 	ResultSet: { Rows, ResultSetMetadata },
-	formatters,
+	formatFields,
 	skip,
 }: {
 	ResultSet: Athena.ResultSet
-	formatters?: Formatters
+	formatFields?: FieldFormatters
 	skip?: number
 }): ParsedResult => {
 	if (!Rows || !ResultSetMetadata || !ResultSetMetadata.ColumnInfo) {
 		return []
 	}
 	const { ColumnInfo } = ResultSetMetadata
-	const f = {
-		...defaultFormatters,
-		...formatters,
-	} as Formatters
 	return Rows.slice(skip).map(({ Data }) => {
 		if (!Data) {
 			return {}
@@ -40,8 +36,11 @@ export const parseAthenaResult = ({
 				v = Data[key].VarCharValue
 			}
 			if (v !== undefined) {
-				const formatter = f[Type] || f.default
-				v = formatter(v)
+				const parseValue = valueParsers[Type] || valueParsers.default
+				v = parseValue(v)
+			}
+			if (formatFields && formatFields[Name]) {
+				v = formatFields[Name](v)
 			}
 			return {
 				...result,
