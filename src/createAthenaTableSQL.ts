@@ -3,6 +3,7 @@ export enum AthenaTableScalarFieldType {
 	string = 'string',
 	float = 'float',
 	int = 'int',
+	bigint = 'bigint',
 }
 
 export enum AthenaTableStructFieldType {
@@ -53,6 +54,7 @@ const createFieldDefinition = ({
 	switch (type) {
 		case AthenaTableScalarFieldType.float:
 		case AthenaTableScalarFieldType.int:
+		case AthenaTableScalarFieldType.bigint:
 		case AthenaTableScalarFieldType.timestamp:
 		case AthenaTableScalarFieldType.string:
 			return type

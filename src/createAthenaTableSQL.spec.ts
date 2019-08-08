@@ -21,7 +21,7 @@ describe('Athena SQL generator', () => {
 									type: AthenaTableStructFieldType.struct,
 									fields: {
 										ts: {
-											type: AthenaTableScalarFieldType.string,
+											type: AthenaTableScalarFieldType.bigint,
 										},
 										v: {
 											type: AthenaTableArrayFieldType.array,
@@ -33,7 +33,7 @@ describe('Athena SQL generator', () => {
 									type: AthenaTableStructFieldType.struct,
 									fields: {
 										ts: {
-											type: AthenaTableScalarFieldType.string,
+											type: AthenaTableScalarFieldType.bigint,
 										},
 										v: {
 											type: AthenaTableScalarFieldType.int,
@@ -44,7 +44,7 @@ describe('Athena SQL generator', () => {
 									type: AthenaTableStructFieldType.struct,
 									fields: {
 										ts: {
-											type: AthenaTableScalarFieldType.string,
+											type: AthenaTableScalarFieldType.bigint,
 										},
 										v: {
 											type: AthenaTableStructFieldType.struct,
@@ -83,7 +83,7 @@ describe('Athena SQL generator', () => {
 				}),
 			).toEqual(
 				`CREATE EXTERNAL TABLE fooDatabase.barTable (` +
-					'`reported` struct<acc:struct<ts:string, v:array<float>>, bat:struct<ts:string, v:int>, gps:struct<ts:string, v:struct<acc:float, alt:float, hdg:float, lat:float, lng:float, spd:float>>>, `timestamp` timestamp, `deviceId` string' +
+					'`reported` struct<acc:struct<ts:bigint, v:array<float>>, bat:struct<ts:bigint, v:int>, gps:struct<ts:bigint, v:struct<acc:float, alt:float, hdg:float, lat:float, lng:float, spd:float>>>, `timestamp` timestamp, `deviceId` string' +
 					') ' +
 					"ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe' " +
 					'WITH SERDEPROPERTIES (' +
