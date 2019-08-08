@@ -315,4 +315,65 @@ describe('parseAthenaResult', () => {
 			},
 		])
 	})
+
+	it('can parse bigint values', () => {
+		expect(
+			parseAthenaResult({
+				ResultSet: {
+					Rows: [
+						{
+							Data: [
+								{ VarCharValue: '1565271522979' },
+								{ VarCharValue: '1419' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '1565271514192' },
+								{ VarCharValue: '825' },
+							],
+						},
+						{
+							Data: [
+								{ VarCharValue: '1565267212656' },
+								{ VarCharValue: '363' },
+							],
+						},
+					],
+					ResultSetMetadata: {
+						ColumnInfo: [
+							{
+								CatalogName: 'hive',
+								SchemaName: '',
+								TableName: '',
+								Name: 'date',
+								Label: 'date',
+								Type: 'bigint',
+								Precision: 19,
+								Scale: 0,
+								Nullable: 'UNKNOWN',
+								CaseSensitive: false,
+							},
+							{
+								CatalogName: 'hive',
+								SchemaName: '',
+								TableName: '',
+								Name: 'value',
+								Label: 'value',
+								Type: 'bigint',
+								Precision: 19,
+								Scale: 0,
+								Nullable: 'UNKNOWN',
+								CaseSensitive: false,
+							},
+						],
+					},
+				},
+			}),
+		).toEqual([
+			{ date: 1565271522979, value: 1419 },
+			{ date: 1565271514192, value: 825 },
+			{ date: 1565267212656, value: 363 },
+		])
+	})
 })

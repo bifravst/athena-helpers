@@ -6,6 +6,7 @@ export type FieldFormatters = { [key: string]: (v: any) => any }
 
 const valueParsers = {
 	integer: (v: string) => parseInt(v, 10),
+	bigint: (v: string) => parseInt(v, 10),
 	default: (v: string) => v,
 	array: (v: string) => JSON.parse(v) as any[],
 } as { [key: string]: (v: string) => any }
