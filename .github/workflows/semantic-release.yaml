@@ -1,0 +1,23 @@
+name: Semantic Release
+
+on: check_suite
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: relase
+        if: github.event.check_suite.status == 'completed' && github.event.check_suite.conclusion == 'success' && ${GITHUB_REF} == 'saga'
+        env:
+          GK_LOCK_DEFAULT_BRANCH: saga
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_USERNAME: ${{ secrets.GH_USERNAME }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          sudo npm install -g npm@
+          npm ci --no-audit
+          npx tsc
+          npm i --no-save semantic-release@next
+          npx semantic-release
