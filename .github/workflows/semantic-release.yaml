@@ -1,6 +1,6 @@
 name: Semantic Release
 
-on: [check_suite, check_suite:completed]
+on: [check_suite]
 
 jobs:
   release:
