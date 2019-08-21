@@ -29,22 +29,16 @@
     "backoff": "^2.5.0"
   },
   "devDependencies": {
+    "@bifravst/code-style": "^3.0.0",
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-angular": "^8.1.0",
     "@types/aws-sdk": "^2.7.0",
     "@types/backoff": "^2.5.1",
     "@types/jest": "^24.0.16",
     "@types/node": "^12.6.9",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
-    "@typescript-eslint/parser": "^1.13.0",
-    "eslint": "^6.1.0",
-    "eslint-config-prettier": "^6.0.0",
     "husky": "^3.0.2",
     "jest": "^24.8.0",
-    "lint-staged": "^9.2.1",
-    "prettier": "^1.18.0",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.5.3"
+    "ts-jest": "^24.0.2"
   },
   "husky": {
     "hooks": {
