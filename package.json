@@ -23,7 +23,7 @@
     "NordicSemiconductor"
   ],
   "author": "Nordic Semiconductor ASA | nordicsemi.no",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "dependencies": {
     "aws-sdk": "^2.504.0",
     "backoff": "^2.5.0"
