@@ -48,7 +48,7 @@ export const athenaQuery = ({
 				return b
 			})()
 
-		d({ QueryString })
+		d({ WorkGroup, QueryString })
 		const { QueryExecutionId } = await athena
 			.startQueryExecution({
 				WorkGroup,
