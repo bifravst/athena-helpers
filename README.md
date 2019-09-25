@@ -1,4 +1,4 @@
-# Athena Helpers [![npm version](https://img.shields.io/npm/v/@bifravst/athena-helpers.svg)](https://www.npmjs.com/package/@bifravst/athena-helpers)
+# Athena Helpers
 
 [![GitHub Actions](https://github.com/bifravst/athena-helpers/workflows/Test%20and%20Release/badge.svg)](https://github.com/bifravst/athena-helpers/actions)
 [![Greenkeeper badge](https://badges.greenkeeper.io/bifravst/athena-helpers.svg)](https://greenkeeper.io/)
@@ -8,3 +8,12 @@
 [![ESLint: TypeScript](https://img.shields.io/badge/ESLint-TypeScript-blue.svg)](https://github.com/typescript-eslint/typescript-eslint)
 
 Helper functions which simplify working with AWS Athena.
+
+## Installation
+
+> Note: This package is hosted on the GitHub package registry and
+> [npm needs to be configured](https://help.github.com/en/articles/configuring-npm-for-use-with-github-package-registry#installing-a-package)
+> in order to use it.
+
+    echo "@bifravst:registry=https://npm.pkg.github.com" >> .npmrc
+    npm i --save-dev @bifravst/athena-helpers
