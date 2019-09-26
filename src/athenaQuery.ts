@@ -102,7 +102,12 @@ export const athenaQuery = ({
 						)
 				}
 			})
-			b.on('fail', () => {
+			b.on('fail', async () => {
+				await athena
+					.stopQueryExecution({
+						QueryExecutionId,
+					})
+					.promise()
 				reject(new Error(`Timed out waiting for query ${QueryExecutionId}`))
 			})
 			b.backoff()
