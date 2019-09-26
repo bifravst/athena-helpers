@@ -44,7 +44,7 @@ export const athenaQuery = ({
 					initialDelay: 1000,
 					maxDelay: 5000,
 				})
-				b.failAfter(8) // 32000
+				b.failAfter(14) // 62000
 				return b
 			})()
 
