@@ -77,6 +77,7 @@ export const athenaQuery = ({
 				})
 
 				switch (State) {
+					case 'QUEUED':
 					case 'RUNNING':
 						b.backoff()
 						break
