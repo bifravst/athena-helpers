@@ -98,7 +98,9 @@ export const athenaQuery = ({
 							QueryExecution: res.QueryExecution,
 						})
 						reject(
-							new Error(`Query ${QueryExecutionId} has unexpected status!`),
+							new Error(
+								`Query ${QueryExecutionId} has unexpected status: "${State}"!`,
+							),
 						)
 				}
 			})
