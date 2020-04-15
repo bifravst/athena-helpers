@@ -34,11 +34,11 @@
     "@commitlint/config-angular": "^8.3.4",
     "@types/aws-sdk": "^2.7.0",
     "@types/backoff": "^2.5.1",
-    "@types/jest": "^25.1.4",
-    "@types/node": "^13.9.8",
-    "husky": "^4.2.3",
-    "jest": "^25.2.4",
-    "ts-jest": "^25.3.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "^13.11.1",
+    "husky": "^4.2.5",
+    "jest": "^25.3.0",
+    "ts-jest": "^25.3.1",
     "typescript": "^3.8.3"
   },
   "husky": {
