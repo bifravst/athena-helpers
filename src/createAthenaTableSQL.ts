@@ -4,6 +4,7 @@ export enum AthenaTableScalarFieldType {
 	float = 'float',
 	int = 'int',
 	bigint = 'bigint',
+	boolean = 'boolean',
 }
 
 export enum AthenaTableStructFieldType {
@@ -57,15 +58,18 @@ const createFieldDefinition = ({
 		case AthenaTableScalarFieldType.bigint:
 		case AthenaTableScalarFieldType.timestamp:
 		case AthenaTableScalarFieldType.string:
+		case AthenaTableScalarFieldType.boolean:
 			return type
 		case AthenaTableArrayFieldType.array:
 			return `array<${createFieldDefinition({
 				type: items as AthenaTableScalarFieldType,
 			})}>`
 		case AthenaTableStructFieldType.struct:
-			return `struct<${Object.entries(fields as {
-				[key: string]: AthenaTableField
-			})
+			return `struct<${Object.entries(
+				fields as {
+					[key: string]: AthenaTableField
+				},
+			)
 				.map(
 					([field, definition]) =>
 						`${field}:${createFieldDefinition(definition)}`,
