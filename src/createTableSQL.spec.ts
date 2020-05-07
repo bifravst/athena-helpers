@@ -86,9 +86,8 @@ describe('Athena SQL generator', () => {
 					'`reported` struct<acc:struct<ts:bigint, v:array<float>>, bat:struct<ts:bigint, v:int>, gps:struct<ts:bigint, v:struct<acc:float, alt:float, hdg:float, lat:float, lng:float, spd:float>>>, `timestamp` timestamp, `deviceId` string' +
 					') ' +
 					"ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe' " +
-					'WITH SERDEPROPERTIES (' +
-					"'serialization.format' = '1'" +
-					`) LOCATION 's3://bazBucket/' ` +
+					`WITH SERDEPROPERTIES ('serialization.format' = '1','ignore.malformed.json' = 'true')` +
+					` LOCATION 's3://bazBucket/' ` +
 					"TBLPROPERTIES ('has_encrypted_data'='false');",
 			)
 		})

@@ -101,9 +101,11 @@ export const createTableSQL = ({
 			.join(', ') +
 		') ' +
 		"ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe' " +
-		'WITH SERDEPROPERTIES (' +
-		"'serialization.format' = '1'" +
-		`) LOCATION '${s3Location}' ` +
+		`WITH SERDEPROPERTIES (${[
+			"'serialization.format' = '1'",
+			"'ignore.malformed.json' = 'true'",
+		].join(',')})` +
+		` LOCATION '${s3Location}' ` +
 		"TBLPROPERTIES ('has_encrypted_data'='false');"
 	)
 }
