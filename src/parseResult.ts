@@ -11,7 +11,7 @@ const valueParsers = {
 	array: (v: string) => JSON.parse(v) as any[],
 } as { [key: string]: (v: string) => any }
 
-export const parseAthenaResult = ({
+export const parseResult = ({
 	ResultSet: { Rows, ResultSetMetadata },
 	formatFields,
 	skip,
@@ -32,7 +32,9 @@ export const parseAthenaResult = ({
 			let v
 			if (Data.length !== ColumnInfo.length && Data.length === 1) {
 				// tab-separated
-				v = (Data[0].VarCharValue as string).split('\t').map(t => t.trim())[key]
+				v = (Data[0].VarCharValue as string).split('\t').map((t) => t.trim())[
+					key
+				]
 			} else {
 				v = Data[key].VarCharValue
 			}

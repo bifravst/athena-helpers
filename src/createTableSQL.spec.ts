@@ -1,71 +1,71 @@
 import {
-	AthenaTableArrayFieldType,
-	AthenaTableScalarFieldType,
-	AthenaTableStructFieldType,
-	createAthenaTableSQL,
-} from './createAthenaTableSQL'
+	ArrayFieldType,
+	ScalarFieldType,
+	StructFieldType,
+	createTableSQL,
+} from './createTableSQL'
 
 describe('Athena SQL generator', () => {
-	describe('createAthenaTableSQL', () => {
+	describe('createTableSQL', () => {
 		it('should create the proper SQL', () => {
 			expect(
-				createAthenaTableSQL({
+				createTableSQL({
 					database: 'fooDatabase',
 					table: 'barTable',
 					s3Location: 's3://bazBucket/',
 					fields: {
 						reported: {
-							type: AthenaTableStructFieldType.struct,
+							type: StructFieldType.struct,
 							fields: {
 								acc: {
-									type: AthenaTableStructFieldType.struct,
+									type: StructFieldType.struct,
 									fields: {
 										ts: {
-											type: AthenaTableScalarFieldType.bigint,
+											type: ScalarFieldType.bigint,
 										},
 										v: {
-											type: AthenaTableArrayFieldType.array,
-											items: AthenaTableScalarFieldType.float,
+											type: ArrayFieldType.array,
+											items: ScalarFieldType.float,
 										},
 									},
 								},
 								bat: {
-									type: AthenaTableStructFieldType.struct,
+									type: StructFieldType.struct,
 									fields: {
 										ts: {
-											type: AthenaTableScalarFieldType.bigint,
+											type: ScalarFieldType.bigint,
 										},
 										v: {
-											type: AthenaTableScalarFieldType.int,
+											type: ScalarFieldType.int,
 										},
 									},
 								},
 								gps: {
-									type: AthenaTableStructFieldType.struct,
+									type: StructFieldType.struct,
 									fields: {
 										ts: {
-											type: AthenaTableScalarFieldType.bigint,
+											type: ScalarFieldType.bigint,
 										},
 										v: {
-											type: AthenaTableStructFieldType.struct,
+											type: StructFieldType.struct,
 											fields: {
 												acc: {
-													type: AthenaTableScalarFieldType.float,
+													type: ScalarFieldType.float,
 												},
 												alt: {
-													type: AthenaTableScalarFieldType.float,
+													type: ScalarFieldType.float,
 												},
 												hdg: {
-													type: AthenaTableScalarFieldType.float,
+													type: ScalarFieldType.float,
 												},
 												lat: {
-													type: AthenaTableScalarFieldType.float,
+													type: ScalarFieldType.float,
 												},
 												lng: {
-													type: AthenaTableScalarFieldType.float,
+													type: ScalarFieldType.float,
 												},
 												spd: {
-													type: AthenaTableScalarFieldType.float,
+													type: ScalarFieldType.float,
 												},
 											},
 										},
@@ -74,10 +74,10 @@ describe('Athena SQL generator', () => {
 							},
 						},
 						timestamp: {
-							type: AthenaTableScalarFieldType.timestamp,
+							type: ScalarFieldType.timestamp,
 						},
 						deviceId: {
-							type: AthenaTableScalarFieldType.string,
+							type: ScalarFieldType.string,
 						},
 					},
 				}),

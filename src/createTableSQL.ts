@@ -1,4 +1,4 @@
-export enum AthenaTableScalarFieldType {
+export enum ScalarFieldType {
 	timestamp = 'timestamp',
 	string = 'string',
 	float = 'float',
@@ -7,67 +7,61 @@ export enum AthenaTableScalarFieldType {
 	boolean = 'boolean',
 }
 
-export enum AthenaTableStructFieldType {
+export enum StructFieldType {
 	struct = 'struct',
 }
 
-export enum AthenaTableArrayFieldType {
+export enum ArrayFieldType {
 	array = 'array',
 }
 
-export type AthenaTableScalarField = {
-	type: AthenaTableScalarFieldType
+export type ScalarField = {
+	type: ScalarFieldType
 }
 
-export type AthenaTableStructField = {
-	type: AthenaTableStructFieldType
+export type StructField = {
+	type: StructFieldType
 	fields: {
-		[key: string]: AthenaTableField
+		[key: string]: Field
 	}
 }
 
-export type AthenaTableArrayField = {
-	type: AthenaTableArrayFieldType
-	items: AthenaTableScalarFieldType
+export type ArrayField = {
+	type: ArrayFieldType
+	items: ScalarFieldType
 }
 
-export type AthenaTableField =
-	| AthenaTableScalarField
-	| AthenaTableStructField
-	| AthenaTableArrayField
+export type Field = ScalarField | StructField | ArrayField
 
-type AthenaTableFieldType =
-	| AthenaTableScalarFieldType
-	| AthenaTableStructFieldType
-	| AthenaTableArrayFieldType
+type FieldType = ScalarFieldType | StructFieldType | ArrayFieldType
 
 const createFieldDefinition = ({
 	type,
 	items,
 	fields,
 }: {
-	type: AthenaTableFieldType
-	items?: AthenaTableScalarFieldType
+	type: FieldType
+	items?: ScalarFieldType
 	fields?: {
-		[key: string]: AthenaTableField
+		[key: string]: Field
 	}
 }): string => {
 	switch (type) {
-		case AthenaTableScalarFieldType.float:
-		case AthenaTableScalarFieldType.int:
-		case AthenaTableScalarFieldType.bigint:
-		case AthenaTableScalarFieldType.timestamp:
-		case AthenaTableScalarFieldType.string:
-		case AthenaTableScalarFieldType.boolean:
+		case ScalarFieldType.float:
+		case ScalarFieldType.int:
+		case ScalarFieldType.bigint:
+		case ScalarFieldType.timestamp:
+		case ScalarFieldType.string:
+		case ScalarFieldType.boolean:
 			return type
-		case AthenaTableArrayFieldType.array:
+		case ArrayFieldType.array:
 			return `array<${createFieldDefinition({
-				type: items as AthenaTableScalarFieldType,
+				type: items as ScalarFieldType,
 			})}>`
-		case AthenaTableStructFieldType.struct:
+		case StructFieldType.struct:
 			return `struct<${Object.entries(
 				fields as {
-					[key: string]: AthenaTableField
+					[key: string]: Field
 				},
 			)
 				.map(
@@ -87,7 +81,7 @@ const createFieldDefinition = ({
  * @param s3Location Name of the S3 bucket that contains the device messages
  * @param fields The list of fields that describe the device data
  */
-export const createAthenaTableSQL = ({
+export const createTableSQL = ({
 	database,
 	table,
 	s3Location,
@@ -97,7 +91,7 @@ export const createAthenaTableSQL = ({
 	table: string
 	s3Location: string
 	fields: {
-		[key: string]: AthenaTableField
+		[key: string]: Field
 	}
 }): string => {
 	return (

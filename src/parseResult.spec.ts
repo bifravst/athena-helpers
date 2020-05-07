@@ -1,4 +1,4 @@
-import { parseAthenaResult } from './parseAthenaResult'
+import { parseResult } from './parseResult'
 
 const ResultSet = {
 	Rows: [
@@ -46,10 +46,10 @@ const ResultSet = {
 	},
 }
 
-describe('parseAthenaResult', () => {
+describe('pareseResult', () => {
 	it('parses an Athena result into an array of values', () => {
 		expect(
-			parseAthenaResult({
+			parseResult({
 				ResultSet,
 				skip: 1,
 			}),
@@ -67,10 +67,10 @@ describe('parseAthenaResult', () => {
 
 	it('can accept formatters to customize row formatting', () => {
 		expect(
-			parseAthenaResult({
+			parseResult({
 				ResultSet,
 				formatFields: {
-					value: v => parseInt(v, 10) / 1000,
+					value: (v) => parseInt(v, 10) / 1000,
 				},
 				skip: 1,
 			}),
@@ -88,7 +88,7 @@ describe('parseAthenaResult', () => {
 
 	it('can parse a DESCRIBE TABLE query', () => {
 		expect(
-			parseAthenaResult({
+			parseResult({
 				ResultSet: {
 					Rows: [
 						{
@@ -186,7 +186,7 @@ describe('parseAthenaResult', () => {
 
 	it('can parse a result with array values', () => {
 		expect(
-			parseAthenaResult({
+			parseResult({
 				skip: 1,
 				ResultSet: {
 					ResultSetMetadata: {
@@ -318,7 +318,7 @@ describe('parseAthenaResult', () => {
 
 	it('can parse bigint values', () => {
 		expect(
-			parseAthenaResult({
+			parseResult({
 				ResultSet: {
 					Rows: [
 						{

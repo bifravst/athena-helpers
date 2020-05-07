@@ -1,3 +1,3 @@
 export * from './athenaQuery'
-export * from './createAthenaTableSQL'
-export * from './parseAthenaResult'
+export * from './createTableSQL'
+export * from './parseResult'
