@@ -170,7 +170,7 @@ const waitForQueryCompletion = async ({
  * @param debugLog provide a method to receive debug logs
  * @param errorLog provide a method to receive error logs
  */
-export const athenaQuery = ({
+export const query = ({
 	athena,
 	WorkGroup,
 	queuedBackoff,
