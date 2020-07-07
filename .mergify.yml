@@ -5,4 +5,6 @@ pull_request_rules:
       - status-success=tests
     actions:
       merge:
-        method: rebase
+        method: squash
+        commit_message: title+body
+        strict: true
