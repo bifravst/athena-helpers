@@ -35,7 +35,7 @@
     "@types/backoff": "2.5.1",
     "@types/jest": "26.0.16",
     "@types/node": "14.14.10",
-    "husky": "4.3.4",
+    "husky": "4.3.5",
     "jest": "26.6.3",
     "ts-jest": "26.4.4",
     "typescript": "4.1.2"
