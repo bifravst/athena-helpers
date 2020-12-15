@@ -34,7 +34,7 @@
     "@commitlint/config-angular": "11.0.0",
     "@types/backoff": "2.5.1",
     "@types/jest": "26.0.19",
-    "@types/node": "14.14.13",
+    "@types/node": "14.14.14",
     "husky": "4.3.6",
     "jest": "26.6.3",
     "ts-jest": "26.4.4",
