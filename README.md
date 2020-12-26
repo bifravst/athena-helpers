@@ -11,6 +11,8 @@
 
 Helper functions which simplify working with AWS Athena.
 
+> *Note:* Bifravst now uses [Timestream](https://aws.amazon.com/de/timestream/), so these helpers are no longer used.
+
 ## Installation
 
     npm i --save-dev @bifravst/athena-helpers
